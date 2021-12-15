@@ -1,0 +1,26 @@
+{
+  "name": "@fattafatta/rescript-zora-jsdom",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "test",
+      "type": "dev",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "bs-dependencies": ["@dusty-phillips/rescript-zora"],
+  "bs-dev-dependencies": ["@dusty-phillips/rescript-zora"]
+}

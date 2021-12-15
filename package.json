@@ -1,0 +1,33 @@
+{
+  "name": "@fattafatta/rescript-zora-jsdom",
+  "version": "0.1.0",
+  "description": "An extension for rescript-zora that provides a DOM context for tests (via jsdom).",
+  "keywords": [
+    "rescript",
+    "zora",
+    "binding",
+    "jsdom",
+    "test",
+    "testing"
+  ],
+  "author": "Fattafatta",
+  "license": "MIT",
+  "repository": "github:Fattafatta/rescript-zora-jsdom",
+  "scripts": {
+    "clean": "rescript clean",
+    "build": "rescript",
+    "start": "rescript build -w -with-deps",
+    "build:deps": "rescript build -with-deps",
+    "test": "npm run build && pta 'test/*_test.bs.js'"
+  },
+  "devDependencies": {
+    "@dusty-phillips/rescript-zora": "^3.0.0"
+  },
+  "dependencies": {
+    "jsdom": "^19.0.0",
+    "rescript": "^9.1.1"
+  },
+  "peerDependencies": {
+    "@dusty-phillips/rescript-zora": "^3.0.0"
+  }
+}
