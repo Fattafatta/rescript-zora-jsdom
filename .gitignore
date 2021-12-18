@@ -6,8 +6,8 @@
 .vscode/
 .vim/
 
-/lib/
-/node_modules/
+**/lib/
+**/node_modules/
 *.bs.js
 *.mjs
 

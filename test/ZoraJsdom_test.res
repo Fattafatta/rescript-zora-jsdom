@@ -1,10 +1,10 @@
-// tests/simple.test.res
 open Zora
 
 @val external document: 'd = "document"
 @val external window: 'w = "window"
 
 ZoraJsdom.zoraWithDOM("DOM presence in parallel tests", t => {
+  // ok works here because type of window is generic
   t->ok(window, "should have a window")
   t->ok(document, "should have a document")
   done()
