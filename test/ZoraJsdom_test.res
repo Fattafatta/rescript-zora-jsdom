@@ -47,3 +47,30 @@ Zora.zoraBlock("Reset document between tests", t => {
     done()
   })
 })
+
+type localStorageType = {
+  getItem: 'a. string => 'a,
+  setItem: 'a. (string, 'a) => unit,
+  removeItem: string => unit,
+  clear: unit => unit,
+}
+
+type rType = {a: string}
+
+ZoraJsdom.zoraWithDOM("localStorage works", t => {
+  let ls: localStorageType = window["localStorage"]
+  // ok works here because type of window is generic
+  ls.setItem("mykey1", "myvalue")
+  t->equal(ls.getItem("mykey1"), "myvalue", "should have item with value 'mykey'")
+  ls.setItem("mykey2", 1)
+  t->equal(ls.getItem("mykey2"), 1, "should have item with value 1")
+  ls.setItem("mykey3", {a: "val"})
+  t->equal(ls.getItem("mykey3"), {a: "val"}, "should have item with value {a: 'val'}")
+  ls.removeItem("mykey1")
+  t->equal(ls.getItem("mykey1"), Js.null, "item should be deleted")
+  ls.clear()
+  t->equal(ls.getItem("mykey1"), Js.null, "item should be deleted")
+  t->equal(ls.getItem("mykey2"), Js.null, "item should be deleted")
+  t->equal(ls.getItem("mykey3"), Js.null, "item should be deleted")
+  done()
+})

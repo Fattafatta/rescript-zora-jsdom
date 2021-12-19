@@ -11,11 +11,39 @@ function copyProps(src, target) {
   });
 }
 
+// Simple localStorage mock.
+// The standard storage resulted in an error:
+// "TypeError: 'getItem' called on an object that is not a valid instance of Storage."
+const localStorageMock = (function() {
+  let store = {}
+
+  return {
+    getItem: function(key) {
+      return store[key] || null
+    },
+    setItem: function(key, value) {
+      store[key] = value
+    },
+    removeItem: function(key) {
+      delete store[key]
+    },
+    clear: function() {
+      store = {}
+    }
+  }
+})()
+
 exports.withDOM = function (test) {
   return async (...args) => {
-    const dom = new JSDOM('<!doctype html><html><body></body></html>');
+    const dom = new JSDOM('<!doctype html><html><body></body></html>', {
+      url: "https://example.test"
+  });
 
     const { window } = dom;
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock
+    })
 
     global.window = window;
     global.document = window.document;
@@ -29,6 +57,8 @@ exports.withDOM = function (test) {
     global.cancelAnimationFrame = function (id) {
       clearTimeout(id);
     };
+
+    
 
     copyProps(window, global);
 
